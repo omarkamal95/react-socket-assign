@@ -71,3 +71,26 @@ li {
     bottom: 6vh;
     left: 31vw;
 }
+
+.logout-btn{
+    position: fixed;
+    right: 0;
+    padding: 15px 40px;
+    border: 1px black solid;
+    border-radius: 2px;
+    font-size: 1rem;
+    background: #82e0ff;
+}
+
+.login-btn{
+        position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    top: 40%;
+    padding: 28px;
+    background: #0072ff;
+    color: white;
+    border: none;
+    border-radius: 2px;
+}

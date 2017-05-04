@@ -4,7 +4,7 @@ import socket from '~/src/socket'
 class Messages extends Component {
   render() {
     return (<ul>
-      {this.state.messages.map((message, index)=><li key={index} >{message}</li>)}
+      {this.state.messages.map((message, index)=><li key={index} ><strong>{message.displayName}: </strong>{message.message}</li>)}
     </ul>)
   }
   constructor() {
@@ -14,6 +14,17 @@ class Messages extends Component {
     }
   }
   componentWillMount() {
+    let thisState = this;
+    let firebase = this.props.fireBase;
+    firebase.database().ref('messages').once('value').then(function(snapshot) {
+                snapshot.forEach(function(childSnap){
+                   console.log("lolololol MESSAGE ", childSnap.val());
+                   thisState.setState(prevState=>{
+                       return { messages: prevState.messages.concat(childSnap.val()) }
+                  })
+               })
+                
+     });
     socket.on('chat message', (msg) => {
       this.setState(prevState=>{
         return {
@@ -31,6 +42,12 @@ class Messages extends Component {
         }
       })
   }
+    if(this.props.prevMessage !== nextProps.prevMessage){
+      console.log("WEESELLL ", nextProps.prevMessage)
+        this.setState({
+          messages: nextProps.prevMessage
+        })
+    }
   }
 }
 

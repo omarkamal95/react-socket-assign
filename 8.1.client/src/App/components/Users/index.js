@@ -4,7 +4,7 @@ import socket from '~/src/socket'
 class Users extends Component {
   render() {
     return (<ul className="user-sidebar">
-      {this.state.users.map((user, index)=><li key={user.id} ><a href="#">{user.nickname}</a></li>)}
+      {this.state.users.map((user, index)=><li key={user.socketId} ><a href="#">{user.displayName}</a></li>)}
     </ul>)
   }
   constructor() {
